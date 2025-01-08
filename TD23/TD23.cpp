@@ -1,5 +1,19 @@
 #include <iostream>
 #include <vector>
+#include <list>
+#include <string>
+#include <algorithm>
+
+std::string Majuscule(const std::string& input) 
+{
+	std::string result = input;
+	auto toUpperChar = [](char c) -> char 
+		{
+		return std::toupper(c);
+		};
+	std::transform(result.begin(), result.end(), result.begin(), toUpperChar);
+	return result;
+}
 
 int main()
 {
@@ -56,6 +70,30 @@ int main()
 	int c = 9;
 	int d = 4;
 	int f = 5;
+
+	std::list<int> numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+	std::cout << "Liste depart : ";
+	for (const auto& num : numbers) 
+	{
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+
+	numbers.remove_if([](int n) { return n % 2 != 0; });
+
+	std::cout << "Liste finale : ";
+	for (const auto& num : numbers) 
+	{
+		std::cout << num << " ";
+	}
+	std::cout << std::endl;
+
+	std::string phrase = "texte de test pour verifier les modifications.";
+	std::string phrase2 = Majuscule(phrase);
+
+	std::cout << "Phrase depart : " << phrase << std::endl;
+	std::cout << "Phrase finale : " << phrase2 << std::endl;
 
 	auto valeurAdd = [](int a , int b)
 	{
